@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+  <rosparam param="use_sim_time" >false</rosparam>
+  <node name="republish" pkg="image_transport" type="republish" args="compressed in:=/image raw out:=/front_camera/image_rect_color"/>
+  <node name="tpub" pkg="tf" type="static_transform_publisher" args="2 0 1.8 -1.571 0 -2.0943951023931953 /vehicle/base_footprint /cam 10"/>
+
+  <node name="image_pub" pkg="camera_info_pub" type="image_pub"/>
+  <node name="lane_detection_node" pkg="dbw_mkz_vision_sim" type="lane_detection_node"/>
+  <node name="lane_fit_node" pkg="dbw_mkz_vision_sim" type="lane_fit_node"/>
+  <node name="lane_planner_node" pkg="dbw_mkz_vision_sim" type="lane_planner_node"/>
+</launch>
