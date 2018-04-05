@@ -7,7 +7,7 @@
 class ImagePub {
 public:
   ImagePub() {
-    nh = new ros::NodeHandle("~");
+    nh = new ros::NodeHandle();
     nh->param("height", ht, 800);
     nh->param("wt", wt, 800);
     nh->param("frame", camera_frame, std::string("/cam"));
@@ -16,7 +16,7 @@ public:
     //   nh->param("camera_pub_topic", camera_pub_topic,
     //            std::string("/vehicle/front_camera/image_raw"));
     nh->param("camera_info_pub_topic", camera_info_pub_topic,
-              std::string("/front_camera/camera_info"));
+              std::string("front_camera/camera_info"));
     // image_sub = nh->subscribe(camera_pub_topic, 5, &ImagePub::CameraSub,
     // this);
     image_pub =

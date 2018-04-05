@@ -22,14 +22,14 @@ public:
     ROS_INFO("thete %f", theta);
     geometry_msgs::Twist twist;
     twist.linear.x = 0.4 - theta * 0.4;
-    twist.angular.z = theta * 1.5;
+    twist.angular.z = theta * 1.2;
     vel_pub.publish(twist);
   }
   PathFollower() {
     nh = new ros::NodeHandle;
     path_sub =
-        nh->subscribe("/target_path", 20, &PathFollower::PathCallback, this);
-    vel_pub = nh->advertise<geometry_msgs::Twist>("/cmd_vel", 20);
+        nh->subscribe("target_path", 20, &PathFollower::PathCallback, this);
+    vel_pub = nh->advertise<geometry_msgs::Twist>("cmd_vel", 20);
   }
 };
 int main(int argc, char **argv) {
